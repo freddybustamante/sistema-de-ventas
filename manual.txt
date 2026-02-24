@@ -11,10 +11,14 @@
 
 4- Presione windows+r le saldra la ventana ejecutar escriba:   shell:startup  y enter y pegue el archivo 
    incio.bat  que esta en la carpeta llamada pegar.
+ 
+5- pegar la carpeta driver en el disco C
 
-5  Reincie y no cierre la venta que sale el mensaje de servidor corriendo en el puerto 3000
+6- desde cmd ubíte en la carpte driver y ejecuta npm install
 
-6- Dirijase al navegador y ponga lo siguiente ;  localhost:3000/index.html
+7-  Reincie y no cierre la venta que sale el mensaje de servidor corriendo en el puerto 3000
+
+8- Dirijase al navegador y ponga lo siguiente ;  localhost:3000/index.html
 
 
 -------------------
