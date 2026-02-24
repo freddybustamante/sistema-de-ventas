@@ -22,7 +22,7 @@
 
 
 -------------------
-requsitos recomendados
+requisitos recomendados
 -------------------
   windows 10 pro 22H2
   procesador core i3  
