@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <title>Datos del Negocio - POS</title>
+  <link href="css/styles.css" rel="stylesheet" />
+  <script src="assets/js/font-awesome-all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+  <!-- Topbar y sidebar -->
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand ps-3" href="index.html">Gestión de ventas</a>
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+  </nav>
+
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+       <div class="sb-sidenav-menu">
+  <div class="nav">
+    <div class="sb-sidenav-menu-heading">Principal</div>
+    <a class="nav-link" href="index.html">
+      <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+      Tablero Principal
+    </a>
+
+    <div class="sb-sidenav-menu-heading">Ventas</div>
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas"
+      aria-expanded="false" aria-controls="collapseVentas">
+      <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+      Ventas
+      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+    </a>
+    <div class="collapse" id="collapseVentas" data-bs-parent="#sidenavAccordion">
+      <nav class="sb-sidenav-menu-nested nav">
+        <a class="nav-link" href="venta-flexible.html">Venta</a>
+        <!-- <a class="nav-link" href="ventas_carrito.html">Venta Sencilla</a> -->
+        <a class="nav-link" href="productos.html">Productos</a>
+        <a class="nav-link" href="caja.html">Caja</a>
+        <a class="nav-link" href="comprobantes.html">Comprobantes</a>
+        <a class="nav-link" href="consulta-proformas.html">Proformas</a>
+      </nav>
+    </div>
+
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCreditos"
+      aria-expanded="false" aria-controls="collapseCreditos">
+      <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
+      Créditos
+      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+    </a>
+    <div class="collapse" id="collapseCreditos" data-bs-parent="#sidenavAccordion">
+      <nav class="sb-sidenav-menu-nested nav">
+        <a class="nav-link" href="ventas-credito.html">Ventas a Crédito</a>
+        <a class="nav-link" href="pagos-credito.html">Pagos de Crédito</a>
+        <a class="nav-link" href="creditos-cliente.html">Consulta Crédito</a>
+      </nav>
+    </div>
+
+    <div class="sb-sidenav-menu-heading">Informes</div>
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInformes"
+      aria-expanded="false" aria-controls="collapseInformes">
+      <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+      Informes
+      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+    </a>
+    <div class="collapse" id="collapseInformes" data-bs-parent="#sidenavAccordion">
+      <nav class="sb-sidenav-menu-nested nav">
+        <a class="nav-link" href="reportes.html">Reportes</a>
+        <a class="nav-link" href="alerta-stock.html">Alertas de Stock</a>
+        <a class="nav-link" href="backup.html">Backup</a>
+      </nav>
+    </div>
+
+    <div class="sb-sidenav-menu-heading">Sistema</div>
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
+      aria-expanded="false" aria-controls="collapseUsuarios">
+      <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+      Usuarios
+      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+    </a>
+    <div class="collapse" id="collapseUsuarios" data-bs-parent="#sidenavAccordion">
+      <nav class="sb-sidenav-menu-nested nav">
+        <a class="nav-link" href="login.html">Acceso</a>
+      </nav>
+    </div>
+
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseConfig"
+      aria-expanded="false" aria-controls="collapseConfig">
+      <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+      Configuración
+      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+    </a>
+    <div class="collapse" id="collapseConfig" data-bs-parent="#sidenavAccordion">
+      <nav class="sb-sidenav-menu-nested nav">
+        <a class="nav-link" href="negocio.html">Datos del Negocio</a>
+        <a class="nav-link" href="licencia.html">Licencia</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+      </nav>
+    </div>
+
+    <div id="layoutSidenav_content">
+      <main class="container-fluid px-4">
+        <h1 class="mt-4">Datos del Negocio</h1>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+          <li class="breadcrumb-item active">Negocio</li>
+        </ol>
+
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card mb-4">
+              <div class="card-header"><i class="fas fa-info-circle me-1"></i> Información General</div>
+              <div class="card-body">
+                <form id="formNegocio">
+                  <!-- Campos ocultos -->
+                  <input type="hidden" id="id" name="id">
+                  <input type="hidden" id="empresa_logo_actual" name="empresa_logo_actual">
+                  <input type="hidden" id="empresa_qr_actual" name="empresa_qr_actual">
+
+                  <div class="row g-3">
+                    <div class="col-md-8">
+                      <label class="form-label">Nombre/Razón Social *</label>
+                      <input type="text" class="form-control" id="empresa_nombre" name="empresa_nombre" required maxlength="100">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">RUC *</label>
+                      <input type="text" class="form-control" id="empresa_ruc" name="empresa_ruc" required maxlength="20">
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label">Descripción</label>
+                      <textarea class="form-control" id="empresa_descripcion" name="empresa_descripcion" rows="2" maxlength="500"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label">Servicios</label>
+                      <textarea class="form-control" id="empresa_servicios" name="empresa_servicios" rows="2" placeholder="Ej: Cemento, fierro, ladrillo, agregados..."></textarea>
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label">Cuenta bancaria/ Detalles / Promociones / Otros</label>
+                      <textarea class="form-control" id="empresa_detalles" name="empresa_detalles" rows="3"></textarea>
+                    </div>
+
+                    <div class="col-md-8">
+                      <label class="form-label">Dirección</label>
+                      <input type="text" class="form-control" id="empresa_direccion" name="empresa_direccion" maxlength="255">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Teléfonos</label>
+                      <input type="text" class="form-control" id="empresa_telefono" name="empresa_telefono" maxlength="100" placeholder="999999999/012345678">
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Referencia</label>
+                      <input type="text" class="form-control" id="empresa_referencia" name="empresa_referencia" maxlength="255">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Ubicación Maps</label>
+                      <input type="text" class="form-control" id="empresa_ubicacion_maps" name="empresa_ubicacion_maps" maxlength="255" placeholder="https://maps.google.com/...">
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="form-label">Departamento</label>
+                      <input type="text" class="form-control" id="empresa_departamento" name="empresa_departamento" maxlength="100">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Provincia</label>
+                      <input type="text" class="form-control" id="empresa_provincia" name="empresa_provincia" maxlength="100">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Distrito</label>
+                      <input type="text" class="form-control" id="empresa_distrito" name="empresa_distrito" maxlength="100">
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Web</label>
+                      <input type="text" class="form-control" id="empresa_web" name="empresa_web" maxlength="100" placeholder="https://...">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Email</label>
+                      <input type="email" class="form-control" id="empresa_email" name="empresa_email" maxlength="100">
+                    </div>
+<!-- Después del input logo -->
+<div class="col-md-6">
+  <label class="form-label">Logo</label>
+  <input type="file" class="form-control" id="empresa_logo" name="empresa_logo" accept="image/*">
+  <img id="logoPreview" src="" alt="Logo" style="max-height:100px; margin-top:10px; display:none;" />
+  <button type="button" class="btn btn-sm btn-outline-danger mt-1" onclick="eliminarImagen('logo')">
+    <i class="fas fa-trash"></i> Eliminar Logo
+  </button>
+</div>
+
+<div class="col-md-6">
+  <label class="form-label">Código QR</label>
+  <input type="file" class="form-control" id="empresa_qr" name="empresa_qr" accept="image/*">
+  <img id="qrPreview" src="" alt="QR" style="max-height:100px; margin-top:10px; display:none;" />
+</div>
+
+                    <!-- Por ahora sin archivos para simplificar -->
+                    <div class="col-12">
+                      <small class="text-muted">* Campos requeridos</small>
+                    </div>
+                  </div>
+
+                  <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fas fa-save me-1"></i> Guardar
+                    </button>
+                    <button type="button" id="btnLimpiar" class="btn btn-secondary ms-2">
+                      <i class="fas fa-eraser me-1"></i> Limpiar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview -->
+          <div class="col-lg-4">
+            <div class="card mb-4">
+              <div class="card-header"><i class="fas fa-receipt me-1"></i> Previsualización</div>
+              <div class="card-body" id="previewTicket" style="font-size:14px; line-height:1.2;">
+                <div class="text-center">
+                  <strong>[Nombre de la empresa]</strong><br>
+                  <small>RUC: [RUC]</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Desarrollado por: Gbtech SAC &copy;</div>
+            <div><a href="#">Privacy Policy</a>&middot;<a href="#">Terms &amp; Conditions</a></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="js/scripts.js"></script>
+  <script src="assets/js/sweetalert2@11.js"></script>
+  <script src="js/negocio.js"></script>
+</body>
+</html>

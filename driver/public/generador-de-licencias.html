@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Sistema de Activación de Licencias" />
+    <meta name="author" content="Gbtech SAC" />
+    <title>Activación del Sistema - POS</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="assets/js/font-awesome-all.js" crossorigin="anonymous"></script>
+    <style>
+        .license-status {
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .status-activa { background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left: 5px solid #28a745; }
+        .status-prueba { background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-left: 5px solid #ffc107; }
+        .status-expirada { background: linear-gradient(135deg, #f8d7da 0%, #f1b2b7 100%); border-left: 5px solid #dc3545; }
+        .status-sin-licencia { background: linear-gradient(135deg, #e2e3e5 0%, #d1d3d4 100%); border-left: 5px solid #6c757d; }
+        
+        .codigo-generado {
+            background: #f8f9fa;
+            border: 2px dashed #007bff;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #007bff;
+            letter-spacing: 1px;
+            text-align: center;
+            margin: 15px 0;
+            word-break: break-all;
+        }
+        
+        .device-info {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        
+        .btn-group-custom {
+            gap: 10px;
+        }
+        
+        .countdown {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e67e22;
+        }
+        
+        .spinner-border-sm {
+            width: 1rem;
+            height: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header bg-primary text-white">
+                                    <h3 class="text-center font-weight-light my-2">
+                                        <i class="fas fa-key me-2"></i>Sistema de Licencias POS
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    
+                                    <!-- Estado actual de la licencia -->
+                                    <div id="estadoLicencia" class="license-status status-sin-licencia">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h5 class="mb-1">Estado: <span id="estadoTexto">Verificando...</span></h5>
+                                                <p class="mb-0" id="estadoDetalle">Cargando información...</p>
+                                            </div>
+                                            <div id="iconoEstado">
+                                                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                                            </div>
+                                        </div>
+                                        <div id="countdown" class="countdown mt-2 d-none"></div>
+                                    </div>
+
+                                    <!-- Información del dispositivo -->
+                                    <div class="device-info mb-3">
+                                        <small>
+                                            <i class="fas fa-desktop me-1"></i>
+                                            <strong>Dispositivo:</strong> <span id="infoDispositivo">Detectando...</span><br>
+                                            <i class="fas fa-network-wired me-1"></i>
+                                            <strong>Identificador:</strong> <span id="identificadorDispositivo">Generando...</span>
+                                        </small>
+                                    </div>
+
+                                    <!-- Formulario de activación -->
+                                    <div id="panelActivacion">
+                                        
+                                        <!-- Opciones para usuarios sin licencia -->
+                                        <div id="opcionesSinLicencia" class="d-none">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card border-success mb-3">
+                                                        <div class="card-body text-center">
+                                                            <i class="fas fa-gift text-success fa-2x mb-2"></i>
+                                                            <h6>Prueba Gratuita</h6>
+                                                            <p class="small">30 días completamente gratis</p>
+                                                            <button class="btn btn-success btn-sm" id="btnIniciarPrueba">
+                                                                Iniciar Prueba
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card border-primary mb-3">
+                                                        <div class="card-body text-center">
+                                                            <i class="fas fa-crown text-primary fa-2x mb-2"></i>
+                                                            <h6>Licencia Completa</h6>
+                                                            <p class="small">Acceso indefinido</p>
+                                                            <button class="btn btn-primary btn-sm" id="btnMostrarActivacion">
+                                                                Tengo un Código
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Formulario de activación con código -->
+                                        <div id="formularioActivacion" class="d-none">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="codigoLicencia" 
+                                                       placeholder="CLIE-ABC123-DEF456-7890" 
+                                                       style="font-family: 'Courier New', monospace;" />
+                                                <label for="codigoLicencia">
+                                                    <i class="fas fa-key me-1"></i>Código de Licencia
+                                                </label>
+                                            </div>
+                                            <div class="btn-group-custom d-flex">
+                                                <button class="btn btn-primary flex-fill" id="btnActivarCodigo">
+                                                    <i class="fas fa-unlock me-1"></i>Activar Licencia
+                                                </button>
+                                                <button class="btn btn-outline-secondary" id="btnVolverOpciones">
+                                                    <i class="fas fa-arrow-left"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Panel para administradores -->
+                                        <div id="panelAdmin" class="d-none">
+                                            <hr>
+                                            <h6 class="text-muted mb-3">
+                                                <i class="fas fa-cog me-1"></i>Panel Administrativo
+                                            </h6>
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-floating mb-2">
+                                                        <input type="number" class="form-control" id="cantidadCodigos" value="1" min="1" max="50" />
+                                                        <label for="cantidadCodigos">Cantidad de códigos</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button class="btn btn-warning w-100 h-100 d-flex align-items-center justify-content-center" id="btnGenerarCodigos">
+                                                        <i class="fas fa-plus me-1"></i>Generar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div id="codigosGenerados" class="mt-3"></div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Mensajes de estado -->
+                                    <div id="mensajeAlerta" class="alert d-none" role="alert"></div>
+
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">POS 2025 - Gbtech SAC</small>
+                                        <div>
+                                            <button class="btn btn-link btn-sm text-muted" id="btnToggleAdmin" title="Panel Admin">
+                                                <i class="fas fa-cog"></i>
+                                            </button>
+                                            <button class="btn btn-link btn-sm text-muted" id="btnInfo" title="Información">
+                                                <i class="fas fa-info-circle"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="assets/js/sweetalert2@11.js"></script>
+
+</body>
+</html>
+    <script>
+      class LicenciaManager {
+    constructor() {
+        this.macAddress = null;
+        this.identificadorDispositivo = null;
+        this.init();
+    }
+
+    async init() {
+        await this.detectarDispositivo();
+        await this.verificarEstadoActual();
+        this.configurarEventos();
+        this.actualizarInterfaz();
+    }
+
+    async detectarDispositivo() {
+        // Intentar obtener MAC (esto depende de cómo implementes la detección)
+        // Por ahora usamos info del navegador
+        const info = {
+            plataforma: navigator.platform,
+            idioma: navigator.language,
+            userAgent: navigator.userAgent.substring(0, 100)
+        };
+
+        document.getElementById('infoDispositivo').textContent = info.plataforma;
+        
+        // Simular detección de MAC o generar identificador
+        this.identificadorDispositivo = this.generarIdentificadorLocal(info);
+        document.getElementById('identificadorDispositivo').textContent = 
+            this.identificadorDispositivo.substring(0, 16) + '...';
+    }
+
+    generarIdentificadorLocal(info) {
+        const datos = JSON.stringify(info);
+        // Simular hash (en producción esto vendría del backend)
+        let hash = 0;
+        for (let i = 0; i < datos.length; i++) {
+            const char = datos.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash;
+        }
+        return Math.abs(hash).toString(16).toUpperCase().padStart(16, '0');
+    }
+
+    async verificarEstadoActual() {
+        try {
+            // CORREGIDO: Usar la ruta correcta de tu router
+            const response = await fetch('/api/licencia/verificar-estado?' + new URLSearchParams({
+                identificadorDispositivo: this.identificadorDispositivo,
+                macAddress: this.macAddress
+            }));
+            
+            console.log('Response status verificar estado:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('Estado recibido:', data);
+            
+            // Adaptar respuesta al formato esperado
+            this.estadoLicencia = {
+                success: data.success,
+                licenciaActiva: data.licenciaActiva,
+                tipo: data.tipo,
+                mensaje: data.mensaje,
+                diasRestantes: data.diasRestantes,
+                codigoLicencia: data.codigoLicencia
+            };
+                    
+        } catch (error) {
+            console.error('Error verificando estado:', error);
+            this.estadoLicencia = { 
+                success: false, 
+                licenciaActiva: false,
+                mensaje: 'Error al verificar estado'
+            };
+        }
+    }
+
+    actualizarInterfaz() {
+        const estado = this.estadoLicencia;
+        const estadoDiv = document.getElementById('estadoLicencia');
+        const estadoTexto = document.getElementById('estadoTexto');
+        const estadoDetalle = document.getElementById('estadoDetalle');
+        const iconoEstado = document.getElementById('iconoEstado');
+        const opcionesSinLicencia = document.getElementById('opcionesSinLicencia');
+        const countdown = document.getElementById('countdown');
+
+        // Resetear clases
+        estadoDiv.className = 'license-status';
+
+        if (!estado.success || !estado.licenciaActiva) {
+            // Sin licencia activa
+            estadoDiv.classList.add('status-sin-licencia');
+            estadoTexto.textContent = 'Sin Licencia';
+            estadoDetalle.textContent = 'Inicie una prueba gratuita o active con código';
+            iconoEstado.innerHTML = '<i class="fas fa-exclamation-triangle fa-2x text-warning"></i>';
+            opcionesSinLicencia.classList.remove('d-none');
+            
+        } else if (estado.tipo === 'indefinida') {
+            // Licencia indefinida activa
+            estadoDiv.classList.add('status-activa');
+            estadoTexto.textContent = 'Licencia Activa';
+            estadoDetalle.textContent = `Licencia indefinida • Código: ${estado.codigoLicencia || 'N/A'}`;
+            iconoEstado.innerHTML = '<i class="fas fa-check-circle fa-2x text-success"></i>';
+            opcionesSinLicencia.classList.add('d-none');
+            
+        } else if (estado.tipo === 'prueba') {
+            // Licencia de prueba activa
+            estadoDiv.classList.add('status-prueba');
+            estadoTexto.textContent = 'Período de Prueba';
+            estadoDetalle.textContent = `Prueba gratuita de 30 días`;
+            iconoEstado.innerHTML = '<i class="fas fa-clock fa-2x text-warning"></i>';
+            opcionesSinLicencia.classList.add('d-none');
+            
+            if (estado.diasRestantes !== undefined) {
+                countdown.classList.remove('d-none');
+                countdown.innerHTML = `<i class="fas fa-hourglass-half me-1"></i>${estado.diasRestantes} días restantes`;
+            }
+            
+        } else if (estado.tipo === 'expirada') {
+            // Licencia expirada
+            estadoDiv.classList.add('status-expirada');
+            estadoTexto.textContent = 'Licencia Expirada';
+            estadoDetalle.textContent = 'El período de prueba ha finalizado';
+            iconoEstado.innerHTML = '<i class="fas fa-times-circle fa-2x text-danger"></i>';
+            opcionesSinLicencia.classList.remove('d-none');
+        }
+    }
+
+    configurarEventos() {
+        // Iniciar prueba gratuita
+        document.getElementById('btnIniciarPrueba')?.addEventListener('click', () => {
+            this.iniciarPrueba();
+        });
+
+        // Mostrar formulario de activación
+        document.getElementById('btnMostrarActivacion')?.addEventListener('click', () => {
+            document.getElementById('opcionesSinLicencia').classList.add('d-none');
+            document.getElementById('formularioActivacion').classList.remove('d-none');
+        });
+
+        // Volver a opciones
+        document.getElementById('btnVolverOpciones')?.addEventListener('click', () => {
+            document.getElementById('formularioActivacion').classList.add('d-none');
+            document.getElementById('opcionesSinLicencia').classList.remove('d-none');
+        });
+
+        // Activar con código
+        document.getElementById('btnActivarCodigo')?.addEventListener('click', () => {
+            this.activarConCodigo();
+        });
+
+        // Panel administrativo
+        document.getElementById('btnToggleAdmin')?.addEventListener('click', () => {
+            const panel = document.getElementById('panelAdmin');
+            panel.classList.toggle('d-none');
+        });
+
+        // Generar códigos (admin)
+        document.getElementById('btnGenerarCodigos')?.addEventListener('click', () => {
+            this.generarCodigos();
+        });
+
+        // Información del sistema
+        document.getElementById('btnInfo')?.addEventListener('click', () => {
+            this.mostrarInformacion();
+        });
+
+        // Enter en campo de código
+        document.getElementById('codigoLicencia')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.activarConCodigo();
+            }
+        });
+    }
+
+    async iniciarPrueba() {
+        const btn = document.getElementById('btnIniciarPrueba');
+        const originalText = btn.innerHTML;
+        
+        try {
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Iniciando...';
+            btn.disabled = true;
+
+            // CORREGIDO: Usar la ruta correcta según tu router
+            const response = await fetch('/api/licencia/generar-serial', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    macAddress: this.macAddress,
+                    nombreDispositivo: navigator.platform,
+                    infoSistema: {
+                        userAgent: navigator.userAgent,
+                        idioma: navigator.language,
+                        plataforma: navigator.platform
+                    }
+                })
+            });
+
+            console.log('Response status iniciar prueba:', response.status);
+            const data = await response.json();
+            console.log('Respuesta iniciar prueba:', data);
+
+            if (data.success) {
+                this.mostrarMensaje('¡Período de prueba iniciado!', 'success');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            } else {
+                this.mostrarMensaje(data.error || 'Error al iniciar prueba', 'danger');
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            this.mostrarMensaje('Error de conexión', 'danger');
+        } finally {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }
+    }
+
+    async activarConCodigo() {
+        const codigo = document.getElementById('codigoLicencia').value.trim().toUpperCase();
+        const btn = document.getElementById('btnActivarCodigo');
+        const originalText = btn.innerHTML;
+
+        if (!codigo) {
+            this.mostrarMensaje('Ingrese un código de licencia', 'warning');
+            return;
+        }
+
+        try {
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Activando...';
+            btn.disabled = true;
+
+            // CORREGIDO: Usar la ruta correcta según tu router
+            const response = await fetch('/api/licencia/activar-sistema', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    codigoLicencia: codigo,
+                    macAddress: this.macAddress || 'AA:BB:CC:DD:EE:FF',
+                    nombreDispositivo: navigator.platform,
+                    infoSistema: {
+                        userAgent: navigator.userAgent,
+                        idioma: navigator.language,
+                        plataforma: navigator.platform
+                    }
+                })
+            });
+
+            console.log('Response status activar:', response.status);
+            const data = await response.json();
+            console.log('Respuesta activar:', data);
+
+            if (data.success) {
+                this.mostrarMensaje('¡Licencia activada correctamente!', 'success');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            } else {
+                this.mostrarMensaje(data.error || 'Error al activar licencia', 'danger');
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            this.mostrarMensaje('Error de conexión al activar', 'danger');
+        } finally {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }
+    }
+
+    async generarCodigos() {
+        const cantidad = parseInt(document.getElementById('cantidadCodigos').value);
+        const btn = document.getElementById('btnGenerarCodigos');
+
+        if (cantidad < 1 || cantidad > 50) {
+            this.mostrarMensaje('Cantidad debe ser entre 1 y 50', 'warning');
+            return;
+        }
+
+        try {
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Generando...';
+
+            // CORREGIDO: Usar la ruta correcta según tu router
+            const response = await fetch('/api/licencia/admin/generar-codigos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    cantidad: cantidad,
+                    tipoCliente: 'CLIENTE'
+                })
+            });
+
+            console.log('Response status generar códigos:', response.status);
+            const data = await response.json();
+            console.log('Respuesta generar códigos:', data);
+
+            if (data.success) {
+                this.mostrarCodigosGenerados(data.codigos, data.lote);
+                this.mostrarMensaje(`${cantidad} códigos generados correctamente`, 'success');
+            } else {
+                this.mostrarMensaje(data.error || 'Error al generar códigos', 'danger');
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            this.mostrarMensaje('Error de conexión', 'danger');
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-plus me-1"></i>Generar';
+        }
+    }
+
+    mostrarCodigosGenerados(codigos, lote) {
+        const container = document.getElementById('codigosGenerados');
+        const codigosText = codigos.join('\n');
+        
+        container.innerHTML = `
+            <div class="codigo-generado">
+                <div class="mb-2"><strong>Lote:</strong> ${lote}</div>
+                <textarea readonly class="form-control" rows="${Math.min(codigos.length + 1, 10)}" style="font-family: 'Courier New', monospace;">${codigosText}</textarea>
+                <button class="btn btn-sm btn-outline-primary mt-2" onclick="navigator.clipboard.writeText('${codigosText}')">
+                    <i class="fas fa-copy me-1"></i>Copiar Códigos
+                </button>
+            </div>
+        `;
+    }
+
+    mostrarMensaje(mensaje, tipo) {
+        const alertDiv = document.getElementById('mensajeAlerta');
+        if (alertDiv) {
+            alertDiv.className = `alert alert-${tipo}`;
+            alertDiv.textContent = mensaje;
+            alertDiv.classList.remove('d-none');
+
+            setTimeout(() => {
+                alertDiv.classList.add('d-none');
+            }, 5000);
+        } else {
+            // Fallback si no existe el div
+            console.log(`[${tipo.toUpperCase()}] ${mensaje}`);
+        }
+    }
+
+    mostrarInformacion() {
+        Swal.fire({
+            title: 'Información del Sistema',
+            html: `
+                <div class="text-start">
+                    <h6>🎁 Licencia de Prueba (30 días)</h6>
+                    <ul class="small">
+                        <li>Completamente gratuita</li>
+                        <li>Todas las funcionalidades disponibles</li>
+                        <li>Una prueba por dispositivo</li>
+                    </ul>
+                    
+                    <h6 class="mt-3">👑 Licencia Indefinida</h6>
+                    <ul class="small">
+                        <li>Acceso permanente sin límites</li>
+                        <li>Se activa con código único</li>
+                        <li>Vinculada al dispositivo</li>
+                    </ul>
+                    
+                    <h6 class="mt-3">🔧 Identificación del Dispositivo</h6>
+                    <p class="small">El sistema identifica tu dispositivo usando la dirección MAC de red o una huella digital única basada en características del hardware.</p>
+                </div>
+            `,
+            icon: 'info',
+            confirmButtonText: 'Entendido'
+        });
+    }
+}
+
+// Inicializar cuando la página cargue
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Inicializando LicenciaManager...');
+    window.licenciaManager = new LicenciaManager();
+});
+
+// Funciones globales para compatibilidad con tu código anterior
+function generarSerial() {
+    console.log('generarSerial() llamada');
+    if (window.licenciaManager) {
+        window.licenciaManager.iniciarPrueba();
+    } else {
+        console.error('LicenciaManager no inicializado');
+    }
+}
+
+function activarSistema() {
+    console.log('activarSistema() llamada');
+    const serial = document.getElementById('serialInput')?.value;
+    
+    if (!serial) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Falta el serial',
+            text: 'Por favor, ingrese la serial.'
+        });
+        return;
+    }
+    
+    // Usar LicenciaManager si está disponible
+    if (window.licenciaManager) {
+        document.getElementById('codigoLicencia').value = serial;
+        window.licenciaManager.activarConCodigo();
+    } else {
+        // Fallback directo
+        fetch('/api/licencia/activar-sistema', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                codigoLicencia: serial,
+                macAddress: "AA:BB:CC:DD:EE:FF"
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.error
+                });
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Activación exitosa',
+                    text: data.mensaje
+                });
+                window.location.reload();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al activar el sistema.'
+            });
+        });
+    }
+}
+
+function verificarLicencia() {
+    console.log('verificarLicencia() llamada');
+    if (window.licenciaManager) {
+        window.licenciaManager.verificarEstadoActual().then(() => {
+            window.licenciaManager.actualizarInterfaz();
+        });
+    } else {
+        console.error('LicenciaManager no inicializado');
+    }
+}
+
+function copiarSerial() {
+    console.log('copiarSerial() llamada');
+    // Esta función se mantiene para compatibilidad
+    const codigo = document.querySelector('.codigo-generado textarea')?.value;
+    if (codigo) {
+        navigator.clipboard.writeText(codigo);
+        if (window.licenciaManager) {
+            window.licenciaManager.mostrarMensaje('Código copiado al portapapeles', 'info');
+        } else {
+            console.log('Código copiado:', codigo);
+        }
+    }
+}
+    </script>
+</body>
+</html>

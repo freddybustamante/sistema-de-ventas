@@ -1,0 +1,107 @@
+<div class="col-md-5">
+                  <div class="card">
+                    <div class="card-header">
+                      <strong>&NonBreakingSpace; RESUMEN Y PAGO</strong>
+                    </div>
+                    <div class="card-body">
+                    
+                      <p>Subtotal: <strong>S/. <span id="subtotal">0.00</span></strong></p>
+
+                      <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="aplicarIgv">
+                        <label class="form-check-label" for="aplicarIgv">Aplicar IGV (18%)</label>
+                      </div>
+
+                      <p>IGV: <strong>S/. <span id="igv">0.00</span></strong></p>
+                      <p>Total: <strong>S/. <span id="total">0.00</span></strong></p>
+<hr>
+
+<h6 class="fw-bold">Métodos de pago</h6>
+
+<div class="row g-2 mb-2">
+    <div class="col-md-6">
+        <select id="metodo_pago" class="form-select" onchange="toggleReferencia()">
+            </select>
+    </div>
+    <div class="col-md-6">
+        <input type="number" id="monto_pago" class="form-control" placeholder="Monto S/.">
+    </div>
+    <div class="col-md-12" id="div_referencia" style="display: none;">
+        <input type="text" id="referencia_pago" class="form-control" placeholder="N° Operación / Referencia">
+    </div>
+    <div class="col-md-12">
+        <button type="button" class="btn btn-outline-primary w-100" onclick="agregarPago()">
+            <i class="fas fa-plus"></i> Agregar Pago
+        </button>
+    </div>
+</div>
+<table class="table table-sm table-bordered mt-3">
+    <thead class="table-light">
+        <tr>
+            <th>Método</th>
+            <th class="text-end">Monto</th>
+            <th class="text-center">Acción</th>
+        </tr>
+    </thead>
+    <tbody id="tablaPagos"></tbody>
+</table>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <span class="fw-bold">Total pagado:</span>
+    <h5 class="mb-0 text-primary">S/. <span id="totalPagado">0.00</span></h5>
+</div>
+
+                      <div class="form-group">
+                        <label for="efectivo">Efectivo recibido:</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control" id="efectivo" min="0" step="1">
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"
+                              onclick="actualizarEfectivo(5);">5</button>
+                            <button class="btn btn-outline-secondary" type="button"
+                              onclick="actualizarEfectivo(10);">10</button>
+                            <button class="btn btn-outline-secondary" type="button"
+                              onclick="actualizarEfectivo(20);">20</button>
+                            <button class="btn btn-outline-secondary" type="button"
+                              onclick="actualizarEfectivo(50);">50</button>
+                            <button class="btn btn-outline-secondary" type="button"
+                              onclick="actualizarEfectivo(100);">100</button>
+                            <button class="btn btn-warning" type="button" onclick="limpiarEfectivo()">Limpiar</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="vuelto">Vuelto:</label>
+                        <input type="text" class="form-control" id="vuelto" readonly>
+                      </div>
+                      <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="impresionAutomatica" checked>
+                        <label class="form-check-label" for="impresionAutomatica">Imprimir automáticamente al finalizar</label>
+                      </div>
+                      <div class="form-group">
+                        <label for="tipo_comprobante">Tipo de Comprobante</label>
+                        <select id="tipo_comprobante" class="form-control">
+                          <option value="boleta">Boleta</option>
+                          <option value="factura">Factura</option>
+                          <option value="nota">Nota de Venta</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="observaciones">Observaciones</label>
+                        <textarea id="observaciones" class="form-control" placeholder="Observaciones..."></textarea>
+                      </div>
+
+                      <button class="btn btn-success btn-block mb-2" id="btnFinalizarVenta">Finalizar Venta
+                        (F7)</button>
+                      <button id="btnGenerarProforma" class="btn btn-info btn-block mb-2">Generar Proforma</button>
+
+                      <div id="opcionesDocumento" style="display: none;">
+                        <button id="btnBoleta" class="btn btn-primary btn-block">Boleta (F8)</button>
+                        <button id="btnFactura" class="btn btn-success btn-block">Factura (F9)</button>
+                        <button id="btnNotaVenta" class="btn btn-info btn-block">Nota de Venta (F10)</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>

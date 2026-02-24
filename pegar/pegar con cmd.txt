@@ -1,0 +1,3 @@
+ejecutar cmd   ir a ese carpeta shell:startup    
+y pegar el escript para que incie con el sistema el
+y server.js

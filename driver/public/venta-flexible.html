@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Dashboard - SB Admin</title>
+  <link href="css/styles.css" rel="stylesheet" />
+  <script src="assets/js/font-awesome-all.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="index.html">Gestión de ventas</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+        class="fas fa-bars"></i></button>
+    <!-- Navbar Search-->
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+      <div class="input-group">
+        <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
+          aria-describedby="btnNavbarSearch" />
+        <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+      </div>
+    </form>
+    <!-- Navbar-->
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#!">Settings</a></li>
+          <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li><a class="dropdown-item" href="#!">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+          <div class="nav">
+            <div class="sb-sidenav-menu-heading">Principal</div>
+            <a class="nav-link" href="index.html">
+              <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+              Tablero Principal
+            </a>
+
+            <div class="sb-sidenav-menu-heading">Ventas</div>
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas"
+              aria-expanded="false" aria-controls="collapseVentas">
+              <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+              Ventas
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseVentas" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="venta-flexible.html">Venta</a>
+                <!-- <a class="nav-link" href="ventas_carrito.html">Venta Sencilla</a> -->
+                <a class="nav-link" href="productos.html">Productos</a>
+                <a class="nav-link" href="caja.html">Caja</a>
+                <a class="nav-link" href="comprobantes.html">Comprobantes</a>
+                <a class="nav-link" href="consulta-proformas.html">Proformas</a>
+              </nav>
+            </div>
+
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCreditos"
+              aria-expanded="false" aria-controls="collapseCreditos">
+              <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
+              Créditos
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseCreditos" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="ventas-credito.html">Ventas a Crédito</a>
+                <a class="nav-link" href="pagos-credito.html">Pagos de Crédito</a>
+                <a class="nav-link" href="creditos-cliente.html">Consulta Crédito</a>
+              </nav>
+            </div>
+
+            <div class="sb-sidenav-menu-heading">Informes</div>
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInformes"
+              aria-expanded="false" aria-controls="collapseInformes">
+              <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+              Informes
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseInformes" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="reportes.html">Reportes</a>
+                <a class="nav-link" href="alerta-stock.html">Alertas de Stock</a>
+                <a class="nav-link" href="backup.html">Backup</a>
+              </nav>
+            </div>
+
+            <div class="sb-sidenav-menu-heading">Sistema</div>
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios"
+              aria-expanded="false" aria-controls="collapseUsuarios">
+              <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+              Usuarios
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseUsuarios" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="login.html">Acceso</a>
+              </nav>
+            </div>
+
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseConfig"
+              aria-expanded="false" aria-controls="collapseConfig">
+              <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+              Configuración
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseConfig" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="datos-del-negocio.html">Datos del Negocio</a>
+                <a class="nav-link" href="licencia.html">Licencia</a>
+              </nav>
+            </div>
+          </div>
+
+        </div>
+        <!-- <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Gestión de ventas
+                </div> -->
+      </nav>
+    </div>
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+         
+
+          <div class="content mt-3">
+            <div class="animated fadeIn">
+              <div class="row">
+                <!-- Columna izquierda: cliente, productos, carrito -->
+                <div class="col-md-7">
+
+                    <!-- Productos -->
+                  <div class="card">
+                    <div class="card-header">
+                      <strong>PRODUCTOS</strong>
+                    </div>
+                    <div class="input-group mb-3" style="position: relative;">
+                      <input type="text" id="buscarProducto" class="form-control" placeholder="Buscar producto..."
+                        autocomplete="off" autofocus>
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="btnBuscar">Buscar</button>
+                      </div>
+                      <!-- Un solo div de sugerencias -->
+                      <ul class="list-group" id="sugerencias"
+                        style="display: none; position: absolute; top: 100%; left: 0; width: 100%; z-index: 1000;">
+                        <!-- Sugerencias se generan dinámicamente -->
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Carrito de productos -->
+                  <div class="card mt-2">
+                    <div class="card-header">
+                      <strong>&NonBreakingSpace; CARRITO</strong>
+                    </div>
+                    <div class="card-body">
+                      <div id="mensaje-error-stock" class="alert alert-danger" style="display: none;"></div>
+
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody id="carritoContainer"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- Datos del cliente -->
+                  <div class="card mt-2">
+                    <div class="card-header">
+                      <strong>Datos del cliente</strong>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <!-- Tipo de documento -->
+                        <div class="form-group col-sm-6 ">
+                          <label for="tipo_documento">Tipo de documento:</label>
+                          <select class="form-control" id="tipo_documento">
+                            <option value="DNI" selected>DNI</option>
+                            <option value="RUC">RUC</option>
+                            <option value="CE">Carnet de extranjería</option>
+                            <option value="PAS">Pasaporte</option>
+                          </select>
+                        </div>
+
+                        <!-- Número de documento con sugerencias -->
+                        <div class="form-group col-sm-6">
+                          <label for="numero_documento">Número de documento:</label>
+                          <input type="text" class="form-control" id="numero_documento" list="sugerenciasClientes"
+                            placeholder="Ingrese número...">
+                          <datalist id="sugerenciasClientes"></datalist>
+                          <span id="estadoCliente" class="fw-bold d-block mt-2"></span>
+                        </div>
+
+                        <!-- Nombre del cliente -->
+                        <div class="form-group col-sm-6">
+                          <label for="nombre_cliente">Nombre del cliente:</label>
+                          <input type="text" class="form-control" id="nombre_cliente" placeholder="Ingrese nombres">
+                        </div>
+
+                        <!-- Apellido del cliente -->
+                        <div class="form-group col-sm-6">
+                          <label for="apellido_cliente">Apellido:</label>
+                          <input type="text" class="form-control" id="apellido_cliente" placeholder="Ingrese apellidos">
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div class="form-group col-sm-6">
+                          <label for="telefono_cliente">Teléfono:</label>
+                          <input type="text" class="form-control" id="telefono_cliente"
+                            placeholder="Ingrese número de teléfono">
+                        </div>
+
+                        <!-- Dirección (ocupa toda la fila) -->
+                        <div class="form-group col-sm-6">
+                          <label for="direccion_cliente">Dirección:</label>
+                          <textarea class="form-control" id="direccion_cliente" rows="2"
+                            placeholder="Ingrese dirección"></textarea>
+                        </div>
+                      </div>
+
+                      <!-- Campo oculto para almacenar ID del cliente -->
+                      <input type="hidden" id="id_cliente">
+                    </div>
+                  </div>
+
+                
+                </div>
+
+                <!-- Columna derecha: totales, pago, comprobante -->
+                <div class="col-md-5">
+                  <div class="card">
+                    <div class="card-header">
+                      <strong>&NonBreakingSpace; RESUMEN Y PAGO</strong>
+                    </div>
+                    <div class="card-body">
+                    
+                      <p>Subtotal: <strong>S/. <span id="subtotal">0.00</span></strong></p>
+
+                      <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="aplicarIgv">
+                        <label class="form-check-label" for="aplicarIgv">Aplicar IGV (18%)</label>
+                      </div>
+
+                      <p>IGV: <strong>S/. <span id="igv">0.00</span></strong></p>
+                      <p>Total: <strong>S/. <span id="total">0.00</span></strong></p>
+<hr>
+
+<h6 class="fw-bold">Métodos de pago</h6>
+
+<div class="row g-2 mb-2">
+    <div class="col-md-6">
+        <select id="metodo_pago" class="form-select" onchange="toggleReferencia()">
+            </select>
+    </div>
+    <div class="col-md-6">
+        <input type="number" id="monto_pago" class="form-control" placeholder="Monto S/.">
+    </div>
+    <div class="col-md-12" id="div_referencia" style="display: none;">
+        <input type="text" id="referencia_pago" class="form-control" placeholder="N° Operación / Referencia">
+    </div>
+    <div class="col-md-12">
+        <button type="button" class="btn btn-outline-primary w-100" onclick="agregarPago()">
+            <i class="fas fa-plus"></i> Agregar Pago
+        </button>
+    </div>
+</div>
+<table class="table table-sm table-bordered mt-3">
+    <thead class="table-light">
+        <tr>
+            <th>Método</th>
+            <th class="text-end">Monto</th>
+            <th class="text-center">Acción</th>
+        </tr>
+    </thead>
+    <tbody id="tablaPagos"></tbody>
+</table>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <span class="fw-bold">Total pagado:</span>
+    <h5 class="mb-0 text-primary">S/. <span id="totalPagado">0.00</span></h5>
+</div>
+
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"
+                              onclick="actualizarEfectivo(5);">5</button>
+                            <button class="btn btn-outline-secondary" type="button"
+                              onclick="actualizarEfectivo(10);">10</button>
+                            <button class="btn btn-outline-secondary" type="button"
+                              onclick="actualizarEfectivo(20);">20</button>
+                            <button class="btn btn-outline-secondary" type="button"
+                              onclick="actualizarEfectivo(50);">50</button>
+                            <button class="btn btn-outline-secondary" type="button"
+                              onclick="actualizarEfectivo(100);">100</button>
+                            <button class="btn btn-warning" type="button" onclick="limpiarEfectivo()">Limpiar</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="vuelto">Vuelto:</label>
+                        <input type="text" class="form-control" id="vuelto" readonly>
+                      </div>
+                      <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="impresionAutomatica" checked>
+                        <label class="form-check-label" for="impresionAutomatica">Imprimir automáticamente al finalizar</label>
+                      </div>
+                      <div class="form-group">
+                        <label for="tipo_comprobante">Tipo de Comprobante</label>
+                        <select id="tipo_comprobante" class="form-control">
+                          <option value="boleta">Boleta</option>
+                          <option value="factura">Factura</option>
+                          <option value="nota">Nota de Venta</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="observaciones">Observaciones</label>
+                        <textarea id="observaciones" class="form-control" placeholder="Observaciones..."></textarea>
+                      </div>
+
+                      <button class="btn btn-success btn-block mb-2" id="btnFinalizarVenta">Finalizar Venta
+                        (F7)</button>
+                      <button id="btnGenerarProforma" class="btn btn-info btn-block mb-2">Generar Proforma</button>
+
+                      <div id="opcionesDocumento" style="display: none;">
+                        <button id="btnBoleta" class="btn btn-primary btn-block">Boleta (F8)</button>
+                        <button id="btnFactura" class="btn btn-success btn-block">Factura (F9)</button>
+                        <button id="btnNotaVenta" class="btn btn-info btn-block">Nota de Venta (F10)</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div> <!-- row -->
+            </div>
+
+          </div>
+ <!-- Banner de estado licencia -->
+          <div id="estadoLicencia" class="alert"></div>
+        </div>
+        <div id="bloqueoLicencia" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  z-index: 9999;
+  text-align: center;
+  padding-top: 15%;
+">
+          <h2>⚠️ Su licencia ha expirado</h2>
+          <p>Por favor, ingrese el código de licencia para continuar.</p>
+          <a href="licencia.html" class="btn btn-primary mt-3">Ir a Activación</a>
+        </div>
+      </main>
+
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Desarrollado por: Gbtech SAC &copy;</div>
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="js/scripts.js"></script>
+
+  <script src="js/datatables-simple-demo.js"></script>
+  <script src="assets/js/sweetalert2@11.js"></script>
+  <script src="js/venta-flexible.js"></script>
+  <script src="js/imprimir-doc-dinamicos.js"></script> <!-- con conexiona la bd negocio donde esta los datos del neg -->
+  <script src="js/verificarLicencia.js"></script>
+</body>
+
+</html>

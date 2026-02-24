@@ -1,0 +1,35 @@
+
+1- Insalar el gestor de base de datos mysql-installer-community-8.0.45.0  y agregue al path 
+   contraseña
+   Aasdfgf852
+
+2- En la carpeta configuracion de base de datos doble clic en restuar.bat y espere a que termine de configurarse
+
+   Puerto Principal: 3306 (TCP/UDP).
+   Protocolo X (X Plugin): 33060.
+3- Instalar node js version 24 lts y agregue al path
+
+4- Presione windows+r le saldra la ventana ejecutar escriba:   shell:startup  y enter y pegue el archivo 
+   incio.bat  que esta en la carpeta llamada pegar.
+
+5  Reincie y no cierre la venta que sale el mensaje de servidor corriendo en el puerto 3000
+
+6- Dirijase al navegador y ponga lo siguiente ;  localhost:3000/index.html
+
+
+-------------------
+reqsitos recomendados
+-------------------
+  windows 10 pro 22H2
+  procesador core i3  
+  ram 6 gb
+  ssd 150 gb
+------------------
+
+-------------------
+para soporte y otras consultas whatsapp
+------------------
+soporte_  cel 940 644 849
+
+correo:
+ freddybustamante546@gmail.com

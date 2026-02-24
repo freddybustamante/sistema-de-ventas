@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Gestión de Licencia</title>
+
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="assets/js/font-awesome-all.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">Gestión de ventas</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
+                    aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+                        class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Principal</div>
+                        <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Tablero Principal
+                        </a>
+
+                        <div class="sb-sidenav-menu-heading">Ventas</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
+                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                            Ventas
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseVentas" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="venta-flexible.html">Venta</a>
+                                <!-- <a class="nav-link" href="ventas_carrito.html">Venta Sencilla</a> -->
+                                <a class="nav-link" href="productos.html">Productos</a>
+                                <a class="nav-link" href="caja.html">Caja</a>
+                                <a class="nav-link" href="comprobantes.html">Comprobantes</a>
+                                <a class="nav-link" href="consulta-proformas.html">Proformas</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseCreditos" aria-expanded="false" aria-controls="collapseCreditos">
+                            <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
+                            Créditos
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseCreditos" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="ventas-credito.html">Ventas a Crédito</a>
+                                <a class="nav-link" href="pagos-credito.html">Pagos de Crédito</a>
+                                <a class="nav-link" href="creditos-cliente.html">Consulta Crédito</a>
+                            </nav>
+                        </div>
+
+                        <div class="sb-sidenav-menu-heading">Informes</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseInformes" aria-expanded="false" aria-controls="collapseInformes">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                            Informes
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseInformes" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="reportes.html">Reportes</a>
+                                <a class="nav-link" href="alerta-stock.html">Alertas de Stock</a>
+                                <a class="nav-link" href="backup.html">Backup</a>
+                            </nav>
+                        </div>
+
+                        <div class="sb-sidenav-menu-heading">Sistema</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Usuarios
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseUsuarios" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="login.html">Acceso</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseConfig" aria-expanded="false" aria-controls="collapseConfig">
+                            <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+                            Configuración
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseConfig" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="licencia.html">Licencia</a>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Gestión de ventas
+                </div> -->
+            </nav>
+        </div>
+         <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <h1 class="mt-4"><i class="fas fa-credit-card me-2"></i>Sistema de Gestión de Créditos</h1>
+          <p class="lead mb-4">Consulta y administra los créditos de tus clientes</p>
+
+          <!-- Buscar créditos -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="mb-0"><i class="fas fa-search me-2"></i>Buscar Créditos por Documento</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <label for="inputDocumento"><strong>Número de Documento (DNI o RUC):</strong></label>
+                  <input type="text" class="form-control form-control-lg" id="inputDocumento"
+                    placeholder="Ingrese DNI o RUC">
+                </div>
+                <div class="col-md-4 d-flex align-items-end mt-2 mt-md-0">
+                  <button id="btnBuscar" class="btn btn-primary btn-lg w-100">
+                    <i class="fas fa-search me-2"></i>Buscar Créditos
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Créditos encontrados -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="mb-0"><i class="fas fa-list me-2"></i>Créditos Encontrados</h5>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>Fecha de Crédito</th>
+                      <th>Monto Total</th>
+                      <th>Saldo Pendiente</th>
+                      <th>Estado</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tablaCreditos">
+                    <!-- Créditos cargados dinámicamente -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detalles crédito -->
+          <div class="card mb-4" id="detallesCredito" style="display: none;">
+            <div class="card-header">
+              <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Detalles del Crédito</h5>
+            </div>
+            <div class="card-body">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="productos-tab" data-bs-toggle="tab" data-bs-target="#productos"
+                    type="button" role="tab">Productos</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pagos-tab" data-bs-toggle="tab" data-bs-target="#pagos" type="button"
+                    role="tab">Historial de Pagos</button>
+                </li>
+              </ul>
+              <div class="tab-content p-3 border border-top-0" id="myTabContent">
+                <!-- Productos -->
+                <div class="tab-pane fade show active" id="productos" role="tabpanel">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Producto</th>
+                          <th>Cantidad</th>
+                          <th>Precio Unitario</th>
+                          <th>Subtotal</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tablaProductosCredito">
+                        <!-- Productos cargados dinámicamente -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- Pagos -->
+                <div class="tab-pane fade" id="pagos" role="tabpanel">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Fecha de Pago</th>
+                          <th>Método de Pago</th>
+                          <th>Monto Pagado</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tablaPagosCredito">
+                        <!-- Pagos cargados dinámicamente -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="row mt-4">
+                    <div class="col-md-6">
+                      <div class="alert alert-info">
+                        <h6><i class="fas fa-money-bill-wave"></i> Total Pagado</h6>
+                        <p id="totalPagado" class="fw-bold mb-0">S/ 0.00</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="alert alert-warning">
+                        <h6><i class="fas fa-file-invoice-dollar"></i> Saldo Pendiente</h6>
+                        <p id="saldoPendienteHistorial" class="fw-bold mb-0">S/ 0.00</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Sistema de Gestión de Créditos &copy; 2025 - Gbtech SAC</div>
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    </div>
+
+
+    <script src="assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+
+
+
+
+    <script src="assets/js/sweetalert2@11.js"></script> <!-- para el modal -->
+    <script>
+    // Variable global para almacenar los créditos
+    let creditosGlobal = [];
+
+    document.getElementById("btnBuscar").addEventListener("click", async () => {
+      const documento = document.getElementById("inputDocumento").value.trim();
+      const tablaCreditos = document.getElementById("tablaCreditos");
+      document.getElementById("detallesCredito").style.display = "none";
+      tablaCreditos.innerHTML = "";
+
+      if (!documento || documento.length < 6) {
+        Swal.fire({
+          icon: "warning",
+          title: "Documento inválido",
+          text: "Ingrese un DNI o RUC válido",
+          confirmButtonColor: "#3085d6",
+        });
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/creditos/${documento}`);
+        const creditos = await res.json();
+        creditosGlobal = creditos;
+
+        if (!Array.isArray(creditos) || creditos.length === 0) {
+          tablaCreditos.innerHTML = `<tr><td colspan="5" class="text-center">No se encontraron créditos</td></tr>`;
+          return;
+        }
+
+        creditos.forEach(c => {
+          const colorEstado = c.estado === "pendiente" ? "text-danger fw-bold" : "text-success fw-bold";
+          const fila = `
+              <tr>
+                  <td>${new Date(c.fecha_credito).toLocaleDateString()}</td>
+                  <td>S/ ${parseFloat(c.total).toFixed(2)}</td>
+                  <td>S/ ${parseFloat(c.saldo_pendiente).toFixed(2)}</td>
+                  <td class="${colorEstado}">${c.estado}</td>
+                  <td><button class="btn btn-sm btn-info" onclick="verDetalles(${c.id_credito})">Ver Detalles</button></td>
+              </tr>`;
+          tablaCreditos.innerHTML += fila;
+        });
+
+      } catch (error) {
+        console.error("❌ Error al consultar créditos:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Ocurrió un error al buscar los créditos",
+          confirmButtonColor: "#d33",
+        });
+      }
+    });
+
+    async function verDetalles(idCredito) {
+      const tablaProductos = document.getElementById("tablaProductosCredito");
+      const tablaPagos = document.getElementById("tablaPagosCredito");
+      document.getElementById("detallesCredito").style.display = "block";
+
+      // Productos
+      try {
+        const resProd = await fetch(`/api/creditos/detalles/${idCredito}`);
+        const productos = await resProd.json();
+        tablaProductos.innerHTML = "";
+
+        if (!productos.length) {
+          tablaProductos.innerHTML = `<tr><td colspan="4" class="text-center">No hay productos registrados</td></tr>`;
+        } else {
+          productos.forEach(p => {
+            tablaProductos.innerHTML += `
+                  <tr>
+                      <td>${p.producto}</td>
+                      <td>${p.cantidad}</td>
+                      <td>S/ ${parseFloat(p.precio_unitario).toFixed(2)}</td>
+                      <td>S/ ${parseFloat(p.subtotal).toFixed(2)}</td>
+                  </tr>`;
+          });
+        }
+      } catch (err) {
+        console.error("❌ Error al cargar productos:", err);
+        Swal.fire({
+          icon: "error",
+          title: "Error al cargar productos",
+          text: "No se pudieron obtener los productos del crédito.",
+          confirmButtonColor: "#d33",
+        });
+      }
+
+      // Pagos
+      try {
+        const resPagos = await fetch(`/api/creditos/pagos/${idCredito}`);
+        if (!resPagos.ok) throw new Error("No se pudo cargar historial de pagos");
+
+        const pagos = await resPagos.json();
+        const totalElemento = document.getElementById("totalPagado");
+        const saldoElemento = document.getElementById("saldoPendienteHistorial");
+
+        tablaPagos.innerHTML = "";
+        let totalPagado = 0;
+
+        // Total crédito original
+        let totalOriginal = 0;
+        try {
+          const credito = creditosGlobal.find(c => c.id_credito === idCredito);
+          if (credito) {
+            totalOriginal = parseFloat(credito.total);
+          } else {
+            const resCredito = await fetch(`/api/creditos/info/${idCredito}`);
+            const infoCredito = await resCredito.json();
+            totalOriginal = parseFloat(infoCredito.total);
+          }
+        } catch (err) {
+          console.error("❌ Error al obtener total del crédito:", err);
+          throw new Error("No se pudo obtener el total del crédito");
+        }
+
+        if (pagos.length === 0) {
+          tablaPagos.innerHTML = "<tr><td colspan='3' class='text-center'>No se registran pagos</td></tr>";
+          totalElemento.textContent = "S/ 0.00";
+          saldoElemento.textContent = `S/ ${totalOriginal.toFixed(2)}`;
+          return;
+        }
+
+        pagos.forEach(p => {
+          totalPagado += parseFloat(p.monto_pagado);
+          tablaPagos.innerHTML += `
+              <tr>
+                  <td>${new Date(p.fecha_pago).toLocaleDateString()}</td>
+                  <td>${p.metodo_pago}</td>
+                  <td>S/ ${parseFloat(p.monto_pagado).toFixed(2)}</td>
+              </tr>`;
+        });
+
+        const saldoPendiente = totalOriginal - totalPagado;
+        totalElemento.textContent = `S/ ${totalPagado.toFixed(2)}`;
+        saldoElemento.textContent = `S/ ${saldoPendiente.toFixed(2)}`;
+
+      } catch (err) {
+        console.error("❌ Error al cargar pagos:", err.message);
+        Swal.fire({
+          icon: "error",
+          title: "Error al cargar pagos",
+          text: "No se pudo obtener el historial de pagos.",
+          confirmButtonColor: "#d33",
+        });
+      }
+    }
+  </script>
+</body>
+
+</html>

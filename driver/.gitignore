@@ -1,0 +1,11 @@
+nbproject
+npm-debug.log
+node_modules
+.sass-cache
+Docker/
+.DS_Store
+.env
+README.md
+sufee-master.zip
+CORREGIR.md
+implementar-licencias.md

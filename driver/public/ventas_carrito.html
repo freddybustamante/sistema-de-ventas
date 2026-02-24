@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="assets/js/font-awesome-all.js" crossorigin="anonymous"></script>
+    
+    <style>
+        /* Estilos específicos para el carrito */
+        .carrito-tabla {
+            font-size: 14px;
+        }
+        
+        .carrito-tabla th,
+        .carrito-tabla td {
+            padding: 8px 4px;
+            vertical-align: middle;
+        }
+        
+        /* Campo de cantidad más pequeño */
+        .cantidad-producto {
+            width: 60px !important;
+            min-width: 60px;
+            max-width: 60px;
+            padding: 4px 6px !important;
+            font-size: 13px;
+            text-align: center;
+        }
+        
+        /* Columnas con ancho específico */
+        .col-producto {
+            width: 35%;
+            max-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .col-precio {
+            width: 15%;
+            text-align: right;
+            font-size: 13px;
+        }
+        
+        .col-cantidad {
+            width: 15%;
+            text-align: center;
+            padding: 4px !important;
+        }
+        
+        .col-total {
+            width: 15%;
+            text-align: right;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .col-acciones {
+            width: 20%;
+            text-align: center;
+        }
+        
+        /* Botón eliminar más pequeño */
+        .btn-eliminar {
+            padding: 4px 8px;
+            font-size: 11px;
+            border-radius: 3px;
+        }
+        
+        /* Responsivo para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .carrito-tabla {
+                font-size: 12px;
+            }
+            
+            .cantidad-producto {
+                width: 50px !important;
+                min-width: 50px;
+                max-width: 50px;
+            }
+            
+            .col-producto {
+                width: 30%;
+            }
+            
+            .col-precio,
+            .col-cantidad,
+            .col-total {
+                width: 17%;
+            }
+        }
+        
+        /* Tabla responsive mejorada */
+        .table-responsive-carrito {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .table-responsive-carrito .table {
+            min-width: 500px;
+        }
+    </style>
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">Gestión de ventas</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
+                    aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+                        class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                   <div class="nav">
+  <div class="sb-sidenav-menu-heading">Principal</div>
+  <a class="nav-link" href="index.html">
+    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+    Tablero Principal
+  </a>
+
+  <div class="sb-sidenav-menu-heading">Ventas</div>
+  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
+    <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+    Ventas
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+  <div class="collapse" id="collapseVentas" data-bs-parent="#sidenavAccordion">
+    <nav class="sb-sidenav-menu-nested nav">
+      <a class="nav-link" href="venta-flexible.html">Venta</a>
+      <!-- <a class="nav-link" href="ventas_carrito.html">Venta Sencilla</a> -->
+      <a class="nav-link" href="productos.html">Productos</a>
+      <a class="nav-link" href="caja.html">Caja</a>
+      <a class="nav-link" href="comprobantes.html">Comprobantes</a>
+      <a class="nav-link" href="consulta-proformas.html">Proformas</a>
+    </nav>
+  </div>
+
+  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCreditos" aria-expanded="false" aria-controls="collapseCreditos">
+    <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
+    Créditos
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+  <div class="collapse" id="collapseCreditos" data-bs-parent="#sidenavAccordion">
+    <nav class="sb-sidenav-menu-nested nav">
+      <a class="nav-link" href="ventas-credito.html">Ventas a Crédito</a>
+      <a class="nav-link" href="pagos-credito.html">Pagos de Crédito</a>
+      <a class="nav-link" href="creditos-cliente.html">Consulta Crédito</a>
+    </nav>
+  </div>
+
+  <div class="sb-sidenav-menu-heading">Informes</div>
+  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInformes" aria-expanded="false" aria-controls="collapseInformes">
+    <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+    Informes
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+  <div class="collapse" id="collapseInformes" data-bs-parent="#sidenavAccordion">
+    <nav class="sb-sidenav-menu-nested nav">
+      <a class="nav-link" href="reportes.html">Reportes</a>
+      <a class="nav-link" href="alerta-stock.html">Alertas de Stock</a>
+      <a class="nav-link" href="backup.html">Backup</a>
+    </nav>
+  </div>
+
+  <div class="sb-sidenav-menu-heading">Sistema</div>
+  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+    Usuarios
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+  <div class="collapse" id="collapseUsuarios" data-bs-parent="#sidenavAccordion">
+    <nav class="sb-sidenav-menu-nested nav">
+      <a class="nav-link" href="login.html">Acceso</a>
+    </nav>
+  </div>
+
+  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseConfig" aria-expanded="false" aria-controls="collapseConfig">
+    <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+    Configuración
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+  <div class="collapse" id="collapseConfig" data-bs-parent="#sidenavAccordion">
+    <nav class="sb-sidenav-menu-nested nav">
+        <a class="nav-link" href="datos-del-negocio.html">Datos del Negocio</a>
+      <a class="nav-link" href="licencia.html">Licencia</a>
+    </nav>
+  </div>
+</div>
+
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                   
+                   
+           <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+
+                    <!-- Panel del Carrito -->
+                    <div class="col-md-7">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">&NonBreakingSpace; CARRITO</strong>
+                            </div>
+                            <div class="card-body">
+
+                                <div id="mensaje-error-stock" class="alert alert-danger" style="display: none;">
+                                </div>
+
+                                <div class="table-responsive-carrito">
+                                    <table class="table table-sm carrito-tabla">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th class="col-producto">Producto</th>
+                                                <th class="col-precio">Precio</th>
+                                                <th class="col-cantidad">Cant.</th>
+                                                <th class="col-total">Total</th>
+                                                <th class="col-acciones">Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="carritoContainer">
+                                            <!-- Aquí se agregan dinámicamente las filas -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+
+
+                                <!-- CARRITO INICIO -->
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Resumen</h5>
+                                        <p>Subtotal: <span id="subtotal">0.00</span></p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="aplicarIgv">
+                                            <label class="form-check-label" for="aplicarIgv">Aplicar IGV
+                                                (18%)</label>
+                                        </div>
+                                        <p>IGV (18%): <span id="igv">0.00</span></p>
+                                        <p>Total: <span id="total">0.00</span></p>
+                                        <div class="form-group">
+
+                                            <label for="efectivo">Efectivo:</label>
+
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="efectivo" min="0"
+                                                    step="1">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-secondary btn-sm" type="button"
+                                                    onclick="actualizarEfectivo(5);">5</button>
+                                                    <button class="btn btn-outline-secondary btn-sm" type="button"
+                                                        onclick="actualizarEfectivo(10);">10</button>
+                                                    <button class="btn btn-outline-secondary btn-sm" type="button"
+                                                        onclick="actualizarEfectivo(20);">20</button>
+                                                    <button class="btn btn-outline-secondary btn-sm" type="button"
+                                                        onclick="actualizarEfectivo(50);">50</button>
+                                                    <button class="btn btn-outline-secondary btn-sm" type="button"
+                                                        onclick="actualizarEfectivo(100);">100</button>
+                                                        
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="vuelto">Vuelto:</label>
+                                            <input type="text" class="form-control" id="vuelto" readonly>
+                                        </div>
+                                        <button class="btn btn-success btn-block" id="btnFinalizarVenta">Finalizar
+                                            Venta (F7)</button>
+                                        <div id="opcionesDocumento" class="mt-3" style="display: none;">
+
+
+                                            <button id="btnBoleta" class="btn btn-primary btn-block">Boleta
+                                                (F8)</button>
+                                            <button id="btnFactura" class="btn btn-success btn-block">Factura
+                                                (F9)</button>
+                                            <button id="btnNotaVenta" class="btn btn-info btn-block">Nota de Venta
+                                                (F10)</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fin Panel Carrito -->
+
+
+
+
+                    <!-- Panel de Productos -->
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>PRODUCTOS</strong>
+                            </div>
+                            <div class="input-group mb-3" style="position: relative;">
+                                <input type="text" id="buscarProducto" class="form-control"
+                                    placeholder="Buscar producto..." autocomplete="off" autofocus>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" id="btnBuscar">Buscar</button>
+                                </div>
+                                <ul class="list-group" id="sugerencias"
+                                    style="display: none; position: absolute; top: 100%; left: 0; width: 100%; z-index: 1000;">
+                                    <!-- Sugerencias se generan dinámicamente -->
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Separación visual -->
+                        <hr class="my-4 pt-5">
+
+                        <!-- Frases motivadoras -->
+                        <h5 class="mb-2 text-primary">
+                            <i class="bi bi-stars me-2" style="color: #0d6efd;"></i>
+                            Aquí recibirás un nuevo consejo para crecer y mejorar.
+                        </h5>
+
+                        <div class="alert alert-primary d-flex align-items-center" role="alert" id="fraseDelDia"
+                            style="font-size: 1.1rem;">
+                            <i id="iconoConsejo" class="bi bi-lightbulb-fill me-2"
+                                style="font-size: 1.5rem; color: gold;"></i>
+                            <div id="contenidoFrase">
+                                <!-- Aquí va la frase dinámica -->
+                            </div>
+                        </div>
+                        <!-- Fin frases motivadoras -->
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Desarrollado por: Gbtech SAC &copy;</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <script src="assets/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    
+
+    <script src="js/datatables-simple-demo.js"></script>
+
+     <script src="js/carrito.js"></script>
+</body>
+
+</html>

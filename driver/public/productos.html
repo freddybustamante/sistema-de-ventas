@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="assets/js/font-awesome-all.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">Gestión de ventas</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
+                    aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+                        class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Principal</div>
+                        <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Tablero Principal
+                        </a>
+
+                        <div class="sb-sidenav-menu-heading">Ventas</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
+                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                            Ventas
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseVentas" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="venta-flexible.html">Venta</a>
+                                <!-- <a class="nav-link" href="ventas_carrito.html">Venta Sencilla</a> -->
+                                <a class="nav-link" href="productos.html">Productos</a>
+                                <a class="nav-link" href="caja.html">Caja</a>
+                                <a class="nav-link" href="comprobantes.html">Comprobantes</a>
+                                <a class="nav-link" href="consulta-proformas.html">Proformas</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseCreditos" aria-expanded="false" aria-controls="collapseCreditos">
+                            <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
+                            Créditos
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseCreditos" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="ventas-credito.html">Ventas a Crédito</a>
+                                <a class="nav-link" href="pagos-credito.html">Pagos de Crédito</a>
+                                <a class="nav-link" href="creditos-cliente.html">Consulta Crédito</a>
+                            </nav>
+                        </div>
+
+                        <div class="sb-sidenav-menu-heading">Informes</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseInformes" aria-expanded="false" aria-controls="collapseInformes">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                            Informes
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseInformes" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="reportes.html">Reportes</a>
+                                <a class="nav-link" href="alerta-stock.html">Alertas de Stock</a>
+                                <a class="nav-link" href="backup.html">Backup</a>
+                            </nav>
+                        </div>
+
+                        <div class="sb-sidenav-menu-heading">Sistema</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Usuarios
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseUsuarios" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="login.html">Acceso</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseConfig" aria-expanded="false" aria-controls="collapseConfig">
+                            <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+                            Configuración
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseConfig" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="datos-del-negocio.html">Datos del Negocio</a>
+                                <a class="nav-link" href="licencia.html">Licencia</a>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Gestión de ventas
+                </div> -->
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+
+
+                    <div class="content mt-3">
+                        <div class="animated fadeIn">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                                    <div class="card">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <!-- <div class="card-body">
+                                                  <button type="submit" class="btn btn-success me-2" form="formularioAgregarProducto">Guardar</button>
+        <button class="btn btn-warning me-2" type="button" id="btnLimpiar">Limpiar</button>
+        <button class="btn btn-danger" type="button" id="btnEliminar">Eliminar</button>
+                                            </div> -->
+                                            <div>
+                                                <button id="btnImportarExcel" class="btn btn-primary me-2">📂 Importar
+                                                    Excel</button>
+                                                <button id="btnExportarExcel" class="btn btn-success">📤 Exportar
+                                                    Excel</button>
+                                                    <a href="plantilla-excel/plantilla-excel.xlsx" 
+   download="plantillaexcel.xlsx" 
+   class="btn btn-info" 
+   id="btnExportarExcel">
+   Descarga plantilla
+</a>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card-body card-block">
+                                            <div class="form-group">
+                                                <form id="formularioAgregarProducto" enctype="multipart/form-data">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="buscarProducto">Buscar producto...</label>
+                                                                <div class="input-group" style="position: relative;">
+                                                                    <input type="text" class="form-control"
+                                                                        id="buscarProducto"
+                                                                        placeholder="Buscar producto..."
+                                                                        autocomplete="off">
+                                                                    <ul class="list-group" id="sugerencias"
+                                                                        style="display: none; position: absolute; top: 100%; left: 0; width: 100%; z-index: 1000;">
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="hidden" id="producto_id">
+                                                                <label for="nombre">Nombre *</label>
+                                                                <input type="text" class="form-control" id="nombre"
+                                                                    required>
+                                                                <div id="validationServer03Feedback"
+                                                                    class="invalid-feedback">
+                                                                    Nombre obligatorio.
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="precio_compra">Precio de Compra *</label>
+                                                                <input type="number" class="form-control"
+                                                                    id="precio_compra" step="0.000001" required>
+                                                                <div id="validationServer03Feedback"
+                                                                    class="invalid-feedback">
+                                                                    Precio obligatorio.
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="precio_venta">Precio de Venta *</label>
+                                                                <input type="number" class="form-control"
+                                                                    id="precio_venta" step="0.000001" required>
+                                                                <div id="validationServer03Feedback"
+                                                                    class="invalid-feedback">
+                                                                    Precio Venta obligatorio.
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="stock">Stock *</label>
+                                                                <input type="number" class="form-control" id="stock"
+                                                                    required>
+                                                                <div id="validationServer03Feedback"
+                                                                    class="invalid-feedback">
+                                                                    Stock obligatorio.
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="stock_minimo">Stock Mínimo</label>
+                                                                <input type="number" class="form-control"
+                                                                    id="stock_minimo" required>
+                                                                <div id="validationServer03Feedback"
+                                                                    class="invalid-feedback">
+                                                                    Stock min obligatorio.
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="codigo_barras">Código de Barras</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="codigo_barras">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="marca">Marca</label>
+                                                                <input type="text" class="form-control" id="marca">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="proveedor">Proveedor</label>
+                                                                <input type="text" class="form-control" id="proveedor">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="categoria">Categoría</label>
+                                                                <input type="text" class="form-control" id="categoria">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="subcategoria">Subcategoría</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="subcategoria">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="unidad_medida">Unidad de Medida</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="unidad_medida">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="descripcion">Descripción</label>
+                                                                <textarea class="form-control"
+                                                                    id="descripcion"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="imagen">Imagen del Producto</label>
+                                                                <input type="file" class="form-control-file" id="imagen"
+                                                                    accept="image/*">
+                                                                        <input type="hidden" id="imagen_actual" name="imagen_actual"> <!-- 🔥 campo oculto -->
+                                                                <img id="vista-previa-imagen"
+                                                                    style="display:none; max-width: 150px; height: auto;">
+
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="peso">Peso</label>
+                                                                <input type="number" class="form-control" id="peso"
+                                                                    step="0.01">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="alto">Alto</label>
+                                                                <input type="number" class="form-control" id="alto"
+                                                                    step="0.01">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="ancho">Ancho</label>
+                                                                <input type="number" class="form-control" id="ancho"
+                                                                    step="0.01">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="largo">Largo</label>
+                                                                <input type="number" class="form-control" id="largo"
+                                                                    step="0.01">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="fecha_vencimiento">Fecha de
+                                                                    Vencimiento</label>
+                                                                <input type="date" class="form-control"
+                                                                    id="fecha_vencimiento">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="fecha_elaboracion">Fecha de
+                                                                    Elaboración</label>
+                                                                <input type="date" class="form-control"
+                                                                    id="fecha_elaboracion">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="productos_relacionados">Productos
+                                                                    Relacionados (IDs)</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="productos_relacionados">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="unidad_venta_volumen_id">Unidad de Venta
+                                                                    Volumen</label>
+                                                                <select class="form-control"
+                                                                    id="unidad_venta_volumen_id" required>
+                                                                 <option value="">Elija una Opcion
+                                                                        individual</option>
+                                                                    <option value="1">Unidad (UN) - Venta por unidad
+                                                                        individual</option>
+                                                                    <option value="2">Caja (CJ) - Venta por caja
+                                                                    </option>
+                                                                    <option value="3">Docena (DOC) - Venta por docena
+                                                                    </option>
+                                                                    <option value="4">Paquete (PAQ) - Venta por paquete
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="precio_venta_volumen">Precio Venta
+                                                                    Volumen</label>
+                                                                <input type="number" class="form-control"
+                                                                    id="precio_venta_volumen" step="0.01">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="cantidad_minima_volumen">Cantidad Mínima
+                                                                    Volumen</label>
+                                                                <input type="number" class="form-control"
+                                                                    id="cantidad_minima_volumen">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                  
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- 🔹 Barra fija inferior con botones -->
+<div class="barra-acciones">
+    <button type="submit" class="btn btn-success me-2" form="formularioAgregarProducto">Guardar</button>
+    <button class="btn btn-warning me-2" type="button" id="btnLimpiar">Limpiar</button>
+    <button class="btn btn-danger" type="button" id="btnEliminar">Eliminar</button>
+</div>
+      <div id="bloqueoLicencia" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  z-index: 9999;
+  text-align: center;
+  padding-top: 15%;
+">
+  <h2>⚠️ Su licencia ha expirado</h2>
+  <p>Por favor, ingrese el código de licencia para continuar.</p>
+  <a href="licencia.html" class="btn btn-primary mt-3">Ir a Activación</a>
+</div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Desarrollado por: Gbtech SAC &copy;</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+    <script src="assets/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+
+    <!-- <script src="js/datatables-simple-demo.js"></script> -->
+    <script src="js/tablaProductosData.js"></script>
+    <script src="assets/js/xlsx.full.min.js"></script>
+
+    <script src="assets/js/sweetalert2@11.js"></script> <!-- para el modal -->
+<script src="js/verificarLicencia.js"></script>
+</body>
+
+</html>
