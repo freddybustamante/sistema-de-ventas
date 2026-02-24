@@ -14,7 +14,7 @@
  
 5- pegar la carpeta driver en el disco C
 
-6- desde cmd ubíte en la carpte driver y ejecuta npm install
+6- desde cmd ubícate en la carpeta  C:\driver>  y ejecuta npm install
 
 7-  Reincie y no cierre la venta que sale el mensaje de servidor corriendo en el puerto 3000
 
